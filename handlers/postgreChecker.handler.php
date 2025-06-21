@@ -1,19 +1,18 @@
 <?php
+require_once __DIR__ . '/../utils/envSetter.util.php';
 
-$host = "host.docker.internal"; 
-$port = "5112";
-$username = "user";
-$password = "password";
-$dbname = "mydatabase";
+$pgHost = $_ENV['PG_HOST'];
+$pgPort = $_ENV['PG_PORT'];
+$pgDb   = $_ENV['PG_DB'];
+$pgUser = $_ENV['PG_USER'];
+$pgPass = $_ENV['PG_PASS'];
 
-$conn_string = "host=$host port=$port dbname=$dbname user=$username password=$password";
+$conn_string = "host=$pgHost port=$pgPort dbname=$pgDb user=$pgUser password=$pgPass";
 
-$dbconn = pg_connect($conn_string);
+$conn = pg_connect($conn_string);
 
-if (!$dbconn) {
-    echo "❌ Connection Failed: ", pg_last_error() . "  <br>";
-    exit();
+if ($conn) {
+    echo "✅ PostgreSQL Connection <br>";
 } else {
-    echo "✔️ PostgreSQL Connection  <br>";
-    pg_close($dbconn);
+    echo "❌ Connection Failed: " . pg_last_error() . "<br>";
 }

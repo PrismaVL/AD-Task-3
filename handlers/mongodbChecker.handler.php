@@ -1,6 +1,12 @@
 <?php
 try {
-    $mongo = new MongoDB\Driver\Manager("mongodb://host.docker.internal:27017");
+
+    require_once __DIR__ . '/../utils/envSetter.util.php';
+
+    $mongoUri = $_ENV['MONGO_URI'];
+    $mongoDb = $_ENV['MONGO_DB'];
+
+    $mongo = new MongoDB\Driver\Manager("mongodb://mongodb:27017");
 
     $command = new MongoDB\Driver\Command(["ping" => 1]);
     $mongo->executeCommand("admin", $command);

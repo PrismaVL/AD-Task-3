@@ -1,0 +1,16 @@
+{
+    "name": "prismavl/ad-task-3",
+    "type": "project",
+    "authors": [
+        {
+            "name": "prismavl",
+            "email": "202310398@fit.edu.ph"
+        }
+    ],
+    "scripts": {
+        "start": "php -S localhost:8000 router.php"
+    },
+    "require": {
+        "vlucas/phpdotenv": "^5.6"
+    }
+}
