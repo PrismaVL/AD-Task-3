@@ -42,3 +42,10 @@ foreach ($models as $filename => $tableName) {
   $pdo->exec($sql);
   echo "✅ Created table: {$tableName}\n";
 }
+
+// --- Truncate tables (now that they exist) ---
+echo "🧼 Truncating tables...\n";
+foreach (['project_users', 'tasks', 'projects', 'users'] as $table) {
+  $pdo->exec("TRUNCATE TABLE {$table} RESTART IDENTITY CASCADE;");
+  echo "🔁 Truncated table: {$table}\n";
+}
