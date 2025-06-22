@@ -38,7 +38,7 @@ services:
       POSTGRES_PASSWORD: password
       POSTGRES_DB: prismadatabase
     ports:
-      - "5112:5432"
+      - "5432:5432"
     volumes:
       - ad-task-3-postgresql:/data/db/postgresql
 
