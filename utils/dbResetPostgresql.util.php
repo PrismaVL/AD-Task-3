@@ -11,24 +11,34 @@ $pdo = new PDO($dsn, $pgConfig['user'], $pgConfig['pass'], [
   PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
 ]);
 
-echo "Connected to PostgreSQL.\n";
+echo "✅ Connected to PostgreSQL.\n";
 
-// --- Truncate existing tables ---
-echo "Truncating tables...\n";
+// --- Drop existing tables (in reverse dependency order) ---
+echo "🔁 Dropping tables if they exist...\n";
 foreach (['project_users', 'tasks', 'projects', 'users'] as $table) {
   $pdo->exec("DROP TABLE IF EXISTS {$table} CASCADE;");
+  echo "🗑️  Dropped table: {$table}\n";
 }
 
-// --- Recreate tables ---
-foreach (['users', 'projects', 'tasks', 'project_users'] as $table) {
-    $path = __DIR__ . "/../database/{$table}.model.sql";
-    echo "Applying schema for {$table}...\n";
-    $sql = file_get_contents($path);
+// --- Recreate tables from model files ---
+echo "🔨 Rebuilding tables from model files...\n";
 
-    if ($sql === false) {
-        throw new RuntimeException("❌ Could not read {$path}");
-    }
+$models = [
+  'users.model.sql'          => 'users',
+  'project.model.sql'        => 'projects',
+  'task.model.sql'           => 'tasks',
+  'project_users.model.sql'  => 'project_users',
+];
 
-    $pdo->exec($sql);
-    echo "✅ Created table: {$table}\n";
+foreach ($models as $filename => $tableName) {
+  $path = __DIR__ . "/../database/{$filename}";
+  echo "📄 Applying schema for {$tableName}...\n";
+
+  $sql = file_get_contents($path);
+  if ($sql === false) {
+    throw new RuntimeException("❌ Could not read {$path}");
+  }
+
+  $pdo->exec($sql);
+  echo "✅ Created table: {$tableName}\n";
 }
