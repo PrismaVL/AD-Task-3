@@ -5,5 +5,5 @@ $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
 $dotenv->load();
 
 $typeConfig = [
-    'key' => $_ENV['ENV_NAME'],
+    'key' => $_ENV['ENV_NAME'] ?? 'development',
 ];
