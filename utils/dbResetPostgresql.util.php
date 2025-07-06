@@ -26,7 +26,7 @@ $models = [
 ];
 
 foreach ($models as $model) {
-    $sql = file_get_contents('database/' . $model);
+    $sql = file_get_contents(BASE_PATH . '/database/' . $model);
     if ($sql === false) {
         throw new RuntimeException("Could not read database/{$model}");
     }
