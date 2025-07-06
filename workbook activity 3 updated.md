@@ -289,8 +289,8 @@ foreach (['users'] as $table) {
 ## 10. Adding Seeder: Creating Automation for viewing Data
 Seeding is terminology used refering to inputing data in database upon creation, making sure it is connected and can view data
 
-- [ ] duplicate the `dbResetPostgresql.util.php` and rename it `dbSeederPostgresql.util.php`
-- [ ] add the following logic for
+- [x] duplicate the `dbResetPostgresql.util.php` and rename it `dbSeederPostgresql.util.php`
+- [x] add the following logic for
 - Input: Database Code
 - Process: 
     - Check Database Connection
@@ -299,10 +299,10 @@ Seeding is terminology used refering to inputing data in database upon creation,
     - Add Seed Data(Dummy Data)
 - Output: Create the Table/s Ready for Use and can view data
 
-- [ ] before logic prepare the data a head
-    - [ ] create in `staticData/dummies` a file for the specific model
-    - [ ] (in this demo we will use the `users model` with `users dummies`) create file named `users.staticData.php`
-    - [ ] add simple dummy data using array of key arrays
+- [x] before logic prepare the data a head
+    - [x] create in `staticData/dummies` a file for the specific model
+    - [x] (in this demo we will use the `users model` with `users dummies`) create file named `users.staticData.php`
+    - [x] add simple dummy data using array of key arrays
 ```php
 <?php
 // the table of users are compose of following columns: id, username, first_name, last_name, password, role
@@ -310,7 +310,7 @@ return [
     ['username' => 'john.smith', 'first_name' => 'John', 'last_name' => 'Smith', 'password' => 'p@ssW0rd1234', 'role' => 'designer'],
 ]
 ```
-    - [ ] call the dummy data to the seeder code
+    - [x] call the dummy data to the seeder code
 ```php
 // after settings requirements
 
@@ -319,7 +319,7 @@ $users = require_once DUMMIES_PATH . '/users.staticData.php';
 // before logic
 // connect to postgresql
 ```
-    - [ ] add seeding logic
+    - [x] add seeding logic
 ```php
 // simple indicator command seeding started
 echo "Seeding users…\n";
@@ -342,13 +342,13 @@ foreach ($users as $u) {
 }
 ```
 
-- [ ] Add the command in the `composer.json`
+- [x] Add the command in the `composer.json`
     - below `scripts` add a new library key set
     - `"postgresql:seed": "php utils/dbSeederPostgresql.util.php"`
     Partial Complete: ✅ PostgreSQL seeding complete!
     Issue Arise from SQL Code: ❌ Could not read database/modelName.model.sql
 
-- [ ] visit GUI extension for database for checking and if each contents exist in the tables congrats it works!!! 🎉
+- [x] visit GUI extension for database for checking and if each contents exist in the tables congrats it works!!! 🎉
 
 ## 11. Adding Migration: Creating Automation for Migrating New Table Data
 Resets and add/update database
