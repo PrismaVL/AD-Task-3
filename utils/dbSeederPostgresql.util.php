@@ -5,6 +5,8 @@ require_once 'vendor/autoload.php';
 require_once 'bootstrap.php';
 require_once UTILS_PATH . '/envSetter.util.php';
 
+$users = require_once STATIC_DATA_PATH . '/users.staticData.php';
+
 $dsn = "pgsql:host={$databases['pgHost']};port={$databases['pgPort']};dbname={$databases['pgDB']}";
 $pdo = new PDO($dsn, $databases['pgUser'], $databases['pgPass'], [
     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
