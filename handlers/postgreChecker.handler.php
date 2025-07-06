@@ -1,13 +1,12 @@
 <?php
-require_once __DIR__ . '/../utils/envSetter.util.php';
 
-$pgHost = $_ENV['PG_HOST'];
-$pgPort = $_ENV['PG_PORT'];
-$pgDb   = $_ENV['PG_DB'];
-$pgUser = $_ENV['PG_USER'];
-$pgPass = $_ENV['PG_PASS'];
+$host = "host.docker.internal";
+$port = "5432";
+$dbname = "prismadatabase";
+$user = "user";
+$password = "password";
 
-$conn_string = "host=$pgHost port=$pgPort dbname=$pgDb user=$pgUser password=$pgPass";
+$conn_string = "host={$host} port={$port} dbname={$dbname} user={$user} password={$password}";
 
 $conn = pg_connect($conn_string);
 
