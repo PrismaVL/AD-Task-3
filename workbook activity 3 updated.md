@@ -353,14 +353,14 @@ foreach ($users as $u) {
 ## 11. Adding Migration: Creating Automation for Migrating New Table Data
 Resets and add/update database
 
-- [ ] duplicate the `dbResetPostgresql.util.php` and rename it `dbMigratePostgresql.util.php`
-- [ ] delete all codes below `$pdo`
+- [x] duplicate the `dbResetPostgresql.util.php` and rename it `dbMigratePostgresql.util.php`
+- [x] delete all codes below `$pdo`
 
  we will change the logic here:
  - select all tables and drop them: means deleting them
  - then create newly updated tables
 
-- [ ] add this deleting part, add all tables inside the array:
+- [x] add this deleting part, add all tables inside the array:
 ```php
 echo "Dropping old tables…\n";
 foreach ([
@@ -372,7 +372,7 @@ foreach ([
 }
 ```
 
-- [ ] then add again the old setter code
+- [x] then add again the old setter code
 ```php
 echo "Applying schema from database/users.model.sql…\n";
 
@@ -387,13 +387,13 @@ if ($sql === false) {
 $pdo->exec($sql);
 ```
 
-- [ ] Add the command in the `composer.json`
+- [x] Add the command in the `composer.json`
     - below `scripts` add a new library key set
     - `"postgresql:migrate": "php utils/dbMigratePostgresql.util.php"`
     Partial Complete: ✅ PostgreSQL seeding complete!
     Issue Arise from SQL Code: ❌ Could not read database/modelName.model.sql
 
-- [ ] visit GUI extension for database for checking and if each contents exist in the tables congrats it works!!! 🎉
+- [x] visit GUI extension for database for checking and if each contents exist in the tables congrats it works!!! 🎉
 
 ### 12. Making Functionality with database: postgresql
 - [ ] Auth Util
