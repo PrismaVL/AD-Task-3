@@ -36,4 +36,21 @@ foreach ($models as $model) {
     echo "📄 Applied schema from {$model}\n";
 }
 
-echo "✅ PostgreSQL reset complete!\n";
+echo "Seeding users…\n";
+
+$stmt = $pdo->prepare("
+    INSERT INTO users (username, role, first_name, last_name, password)
+    VALUES (:username, :role, :fn, :ln, :pw)
+");
+
+foreach ($users as $u) {
+  $stmt->execute([
+    ':username' => $u['username'],
+    ':role' => $u['role'],
+    ':fn' => $u['first_name'],
+    ':ln' => $u['last_name'],
+    ':pw' => password_hash($u['password'], PASSWORD_DEFAULT),
+  ]);
+}
+
+echo "✅ PostgreSQL seeding complete!\n";
