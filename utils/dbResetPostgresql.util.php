@@ -21,7 +21,7 @@ echo "🔨 Applying schema from model files…\n";
 $models = [
     'users.model.sql',
     'project.model.sql',
-    'tasks.model.sql',
+    'task.model.sql',
     'project_users.model.sql',
 ];
 
