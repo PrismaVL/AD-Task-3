@@ -13,14 +13,14 @@
 - host.docker.internal
 
 ## 1. Modifying Documentation: Update Readme
-- [ ] Check all the TODO Tasks and update according to relevance to the topic
-- [ ] Delete `TODO` mark when done modifying
+- [x] Check all the TODO Tasks and update according to relevance to the topic
+- [x] Delete `TODO` mark when done modifying
 
 ## 2. Modifying Composer: Update `composer.json`
 Change the following:
-- [ ] your-username-here
-- [ ] project-name-here
-- [ ] add author/s
+- [x] your-username-here
+- [x] project-name-here
+- [x] add author/s
 > note: don't use upercase or whitespace in the `"name"`
 
 > you can add multiple authors
@@ -36,7 +36,7 @@ Change the following:
     }
 ],
 ```
-- [ ] after modifications use the command `composer install` in cmd to check if it works
+- [x] after modifications use the command `composer install` in cmd to check if it works
     - to verify if its correct it will show after the command green and no red another is to see if there is `vendor` folder in your files
 
 ## 3. Modifying Docker: Update `compose.yml`
