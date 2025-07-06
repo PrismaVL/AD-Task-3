@@ -20,7 +20,7 @@ foreach (['project_users', 'tasks', 'projects', 'users'] as $table) {
 echo "🔨 Applying schema from model files…\n";
 $models = [
     'users.model.sql',
-    'projects.model.sql',
+    'project.model.sql',
     'tasks.model.sql',
     'project_users.model.sql',
 ];
