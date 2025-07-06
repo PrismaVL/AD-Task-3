@@ -14,12 +14,13 @@ $pdo = new PDO($dsn, $databases['pgUser'], $databases['pgPass'], [
 echo "✅ Connected to PostgreSQL.\n";
 
 
-echo "🧼 Truncating tables…\n";
+echo "💥 Dropping old tables...\n";
+
 foreach (['project_users', 'tasks', 'projects', 'users'] as $table) {
-  $pdo->exec("TRUNCATE TABLE {$table} RESTART IDENTITY CASCADE;");
+    $pdo->exec("DROP TABLE IF EXISTS {$table} CASCADE;");
 }
 
-echo "🔨 Applying schema from model files…\n";
+echo "🔨 Rebuilding tables from model files...\n";
 $models = [
     'users.model.sql',
     'project.model.sql',
@@ -29,15 +30,11 @@ $models = [
 
 foreach ($models as $model) {
     $sql = file_get_contents(BASE_PATH . '/database/' . $model);
-    if ($sql === false) {
-        throw new RuntimeException("Could not read database/{$model}");
-    }
     $pdo->exec($sql);
     echo "📄 Applied schema from {$model}\n";
 }
 
-echo "Seeding users…\n";
-
+echo "🌱 Seeding users…\n";
 $stmt = $pdo->prepare("
     INSERT INTO users (username, role, first_name, last_name, password)
     VALUES (:username, :role, :fn, :ln, :pw)
