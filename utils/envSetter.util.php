@@ -1,23 +1,17 @@
 <?php
-require_once __DIR__ . '/../vendor/autoload.php';
 
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
+require_once BASE_PATH . '/bootstrap.php';
+require_once BASE_PATH . '/vendor/autoload.php';
+
+$dotenv = Dotenv\Dotenv::createImmutable(BASE_PATH);
 $dotenv->load();
 
-$pgConfig = [
-    'host' => $_ENV['PG_HOST'],
-    'port' => $_ENV['PG_PORT'],
-    'db'   => $_ENV['PG_DB'],
-    'user' => $_ENV['PG_USER'],
-    'pass' => $_ENV['PG_PASS'],
-];
-
-$mongoConfig = [
-    'uri' => $_ENV['MONGO_URI'],
-    'db'  => $_ENV['MONGO_DB'],
-];
-
-// Optional: environment type logic
-$typeConfig = [
-    'key' => $_ENV['ENV_NAME'] ?? 'development',
+$databases = [
+    'mongoHost' => $_ENV['MONGO_HOST'],
+    'mongoPort' => $_ENV['MONGO_PORT'],
+    'pgHost' => $_ENV['PG_HOST'],
+    'pgPort' => $_ENV['PG_PORT'],
+    'pgDB' => $_ENV['PG_DB'],
+    'pgUser' => $_ENV['PG_USER'],
+    'pgPass' => $_ENV['PG_PASS'],
 ];
