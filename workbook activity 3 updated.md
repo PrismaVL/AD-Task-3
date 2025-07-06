@@ -199,7 +199,7 @@ CREATE TABLE IF NOT EXISTS project_users (
 );
 ```
 
-- [ ] for all id copy this: `id uuid NOT NULL PRIMARY KEY DEFAULT gen_random_uuid(),`
+- [x] for all id copy this: `id uuid NOT NULL PRIMARY KEY DEFAULT gen_random_uuid(),`
 
 ## 9. Automation: Creating Resetter
 Creating automation needs first a logic on what is the process and what should be expected output.
@@ -216,9 +216,9 @@ In this step we will design an automation that resets the database when needed a
     - Apply SQL Code
 - Output: Create the Table/s Ready for Use
 
-- [ ] Creating a new util code `dbResetPostgresql.util.php`
+- [x] Creating a new util code `dbResetPostgresql.util.php`
 
-- [ ] Setting up requirements
+- [x] Setting up requirements
 > Just copy this
 ```php
 declare(strict_types=1);
@@ -233,7 +233,7 @@ require_once 'bootstrap.php';
 require_once UTILS_PATH . '/envSetter.util.php';
 ```
 
-- [ ] Adding the database host and connecting
+- [x] Adding the database host and connecting
 ```php
 $host = $databases['pgHost'];
 $port = $databases['pgPort'];
@@ -248,7 +248,7 @@ $pdo = new PDO($dsn, $username, $password, [
 ]);
 ```
 
-- [ ] Using specific commands to use to automatically generate the database tables
+- [x] Using specific commands to use to automatically generate the database tables
 ```php
 // Just indicator it was working
 echo "Applying schema from database/users.model.sql…\n";
@@ -267,7 +267,7 @@ $pdo->exec($sql);
 ```
 > repeat this code times the number of tables
 
-- [ ] Make sure it clean the tables
+- [x] Make sure it clean the tables
 ```php
 echo "Truncating tables…\n";
 foreach (['users'] as $table) {
@@ -275,16 +275,16 @@ foreach (['users'] as $table) {
 }
 ```
 
-- [ ] Add the command in the `composer.json`
+- [x] Add the command in the `composer.json`
     - below `scripts` add a new library key set
     - `"postgresql:reset": "php utils/dbResetPostgresql.util.php"`
 
-- [ ] Test it if working
+- [x] Test it if working
     - in terminal use command `composer postgresql:reset`
     Partial Complete: ✅ PostgreSQL reset complete!
     Issue Arise from SQL Code: ❌ Could not read database/modelName.model.sql
 
-- [ ] visit GUI extension for database for checking and if each table exist congrats it works!!! 🎉
+- [x] visit GUI extension for database for checking and if each table exist congrats it works!!! 🎉
 
 ## 10. Adding Seeder: Creating Automation for viewing Data
 Seeding is terminology used refering to inputing data in database upon creation, making sure it is connected and can view data
