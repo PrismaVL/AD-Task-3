@@ -6,7 +6,7 @@ try {
     $mongoUri = $_ENV['MONGO_URI'];
     $mongoDb = $_ENV['MONGO_DB'];
 
-    $mongo = new MongoDB\Driver\Manager("mongodb://mongodb:27017");
+    $mongo = new MongoDB\Driver\Manager("mongodb://host.docker.internal:27111");
 
     $command = new MongoDB\Driver\Command(["ping" => 1]);
     $mongo->executeCommand("admin", $command);
