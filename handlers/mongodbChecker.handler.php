@@ -1,17 +1,17 @@
 <?php
-try {
 
+try {
     require_once __DIR__ . '/../utils/envSetter.util.php';
 
-    $mongoUri = $_ENV['MONGO_URI'];
-    $mongoDb = $_ENV['MONGO_DB'];
+    $host = $databases['mongoHost'];
+    $port = $databases['mongoPort'];
 
-    $mongo = new MongoDB\Driver\Manager("mongodb://host.docker.internal:27111");
+    $mongo = new MongoDB\Driver\Manager("mongodb://$host:$port");
 
     $command = new MongoDB\Driver\Command(["ping" => 1]);
     $mongo->executeCommand("admin", $command);
 
-    echo "✅ Connected to MongoDB successfully.  <br>";
+    echo "✅ Connected to MongoDB successfully. <br>";
 } catch (MongoDB\Driver\Exception\Exception $e) {
-    echo "❌ MongoDB connection failed: " . $e->getMessage() . "  <br>";
+    echo "❌ MongoDB connection failed: " . $e->getMessage() . "<br>";
 }
